@@ -271,6 +271,7 @@ def erstelle_und_speichere_animation(params, filepath):
     # Erstelle die Animation
     fig, ax = plt.subplots()
     im = ax.imshow(bild)
+    ax.axis('off')  # Schaltet die Achsen aus.
     ani = animation.FuncAnimation(fig, aktualisiere_bild, fargs=(params, im), frames=params['frames'], interval=params['interval'])
 
     # Speichern Sie die Animation in einer Datei

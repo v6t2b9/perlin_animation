@@ -31,7 +31,9 @@ def main():
     image = func.generiere_bild(params)
 
     # Zeige das Bild an
+    plt.figure(figsize=(10, 10))  # Optional: Ändern Sie die Größe des Bildes, hier 10x10 Zoll.
     plt.imshow(image)
+    plt.axis('off')  # Schaltet die Achsen aus.
     plt.show()
 
     # Erstelle und speichere die Animation
