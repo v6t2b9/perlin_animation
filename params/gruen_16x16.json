@@ -1,0 +1,1 @@
+{"breite": 16, "hoehe": 16, "t": 0, "scale_x": 0.19, "scale_y": 0.19, "scale_t": 0.5, "octaves": 6, "persistence": 0.4, "lacunarity": 2, "repeatx": 1024, "repeaty": 1024, "repeatz": 1024, "base": 0, "rot_scale": 0, "gruen_scale": 1.0, "blau_scale": 0, "rot_invertiert": false, "gruen_invertiert": true, "blau_invertiert": true, "frames": 200, "interval": 200}
