@@ -2,3 +2,4 @@ export/
 **/.ipynb_checkpoints/
 **/__pycache__
 params/
+**/.DS_Store
