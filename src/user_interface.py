@@ -11,7 +11,7 @@ def benutzer_parameter_abfrage():
         str: 'l' für Laden, 'n' für neue Parameter.
     """
     while True:
-        auswahl = input('Möchten Sie Parameter aus der Datei:\n1: unverändert übernehmen\n2: Parameter anpssen\n> ')
+        auswahl = input('Möchten Sie Parameter aus der Datei:\n1: unverändert übernehmen\n2: Parameter anpassen\n> ')
         if auswahl.lower() in ('1', '2'):
             return auswahl.lower()
         else:
