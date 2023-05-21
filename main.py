@@ -13,17 +13,21 @@ def main():
 
     Initialisiert die Parameter, generiert ein Bild, zeigt es an, erstellt eine Animation und speichert sie in einer Datei.
     """
-    
+    params_datei = user_interface.user_params_datei_auswahl()
+
+    #params = file_handling.laden_params('params/default_params.json')
+    params = file_handling.laden_params(params_datei)
+
     auswahl = user_interface.benutzer_parameter_abfrage()
     
-    if auswahl == 'n':
+    if auswahl == '2':
         # User Eingabe zur Bestimmung der Parameter
-        params_datei = user_interface.benutzer_parameter_eingabe_und_speichern()
+        params_datei = user_interface.benutzer_parameter_eingabe_und_speichern(params)
             
-    else:
+    #else:
         # User Eingabe zur Auswahl der params Datei
-        params_datei = user_interface.user_params_datei_auswahl()
-
+        #params_datei = user_interface.user_params_datei_auswahl()
+        
     # Laden Sie die Parameter aus der Datei
     params = file_handling.laden_params(params_datei)
 
@@ -40,7 +44,11 @@ def main():
     image_generation.show_image(image, (16, 16))
 
     # Erstelle und speichere die Animation
-    animation_generation.erstelle_und_speichere_animation(params, 'export/animation.gif', (10,10))
+    animation_breite = input('Breite der Animation in Pixel: ')
+    animation_hoehe = input('Höhe der Animation in Pixel: ')
+    animation_dateiname = input('Mit welchem Namen soll die gif-Datei gespeichert werden?\n> ')
+    
+    animation_generation.erstelle_und_speichere_animation(params, f'export/{animation_dateiname}.gif', (animation_breite,animation_hoehe), 100)
 
 if __name__ == "__main__":
     main()

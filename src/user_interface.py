@@ -11,22 +11,54 @@ def benutzer_parameter_abfrage():
         str: 'l' für Laden, 'n' für neue Parameter.
     """
     while True:
-        auswahl = input('Möchten Sie Parameter aus einer Datei laden (l) oder neue Parameter eingeben (n)? ')
-        if auswahl.lower() in ('l', 'n'):
+        auswahl = input('Möchten Sie Parameter aus der Datei:\n1: unverändert übernehmen\n2: Parameter anpssen\n> ')
+        if auswahl.lower() in ('1', '2'):
             return auswahl.lower()
         else:
-            print("Ungültige Auswahl, bitte geben Sie 'l' oder 'n' ein.")
+            print("Ungültige Auswahl, bitte geben Sie '1' oder '2' ein.")
 
-def benutzer_parameter_eingabe_und_speichern():
+import os
+import json
+
+def lade_standardwerte(dateiname):
+    """
+    Lädt die Standardwerte aus einer JSON-Datei.
+
+    Args:
+        dateiname (str): Der Name der JSON-Datei.
+
+    Returns:
+        dict: Die geladenen Standardwerte.
+    """
+    pfad = os.path.join('params', f'{dateiname}.json')
+    try:
+        with open(pfad, 'r') as f:
+            standardwerte = json.load(f)
+    except Exception as e:
+        print(f"Fehler beim Laden der Standardwerte: {e}")
+        return None
+    return standardwerte
+
+def benutzer_parameter_eingabe_und_speichern(standardwerte):
     """
     Erlaubt dem Benutzer, Parameter einzugeben und speichert sie in einer Datei.
 
+    Args:
+        params (dict): Ein Wörterbuch mit den Standardwerten der Parameter.
+
     Returns:
         str: Der Pfad zur Datei, in der die Parameter gespeichert sind.
+
+    Raises:
+        Exception: Wenn ein Fehler beim Speichern der Parameter auftritt.
     """
+    #standardwerte = lade_standardwerte(params) # Laden der Standardwerte
+    if standardwerte is None: # Falls das Laden der Standardwerte fehlschlägt
+        return None
+
     params = {
-        'breite': validiere_input('Die Breite des Rauschens.\nbreite (int >= 1): ', int, min=1, default=16),
-        'hoehe': validiere_input('Die Höhe des Rauschens.\nhoehe (int >= 1): ', int, min=1, default=16),
+        'breite': validiere_input('Die Breite des Rauschens.\nbreite (int >= 1): ', int, min=1, default=standardwerte.get('breite', 16)),
+        'hoehe': validiere_input('Die Höhe des Rauschens.\nhoehe (int >= 1): ', int, min=1, default=standardwerte.get('hoehe', 16)),
         't': validiere_input('Der Zeitpunkt, für den das Rauschen generiert wird.\nt (float): ', float, default=0.0),
         'scale_x': validiere_input('Der Skalierungsfaktor in x-Richtung.\nscale_x (float >= 0): ', float, min=0.0, default=0.19),
         'scale_y': validiere_input('Der Skalierungsfaktor in y-Richtung.\nscale_y (float >= 0): ', float, min=0.0, default=0.19),
@@ -73,13 +105,14 @@ def user_params_datei_auswahl():
     """
     files = glob('params/*.json')
 
+    print(f'Aus welcher Datei sollen die Parameter geladen werden? (0 bis {len(files) - 1})')
+
     # Liste die Dateien auf
     for i, file in enumerate(files):
         print(f'{i}: {file}')
 
     while True:
         # Frage den Benutzer, welche Datei geladen werden soll
-        print(f'Welche Datei soll geladen werden? (0 bis {len(files) - 1})')
         dateiauswahl = input('> ')
 
         # Validiere die Benutzereingabe
@@ -102,6 +135,9 @@ def validiere_input(nachricht, typ, min=None, max=None, default=None):
     Returns:
         Der validierte Wert.
     """
+    if default is not None:
+        nachricht += f" (Standardwert: {default})"
+
     while True:
         try:
             ein = input(nachricht)

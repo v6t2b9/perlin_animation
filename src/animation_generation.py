@@ -27,19 +27,23 @@ def aktualisiere_bild(i, params, im):
     # Aktualisiere das Bild der Animation
     im.set_array(bild)
 
-def erstelle_und_speichere_animation(params, filepath, figsize=(10,10)):
+def erstelle_und_speichere_animation(params, filepath, pixel_size=(1000,1000), ppi=100):
     """
     Erstellt eine Animation basierend auf den gegebenen Parametern und speichert sie in einer Datei.
 
     Args:
         params (dict): Ein Wörterbuch mit den Parametern für die Animation.
         filepath (str): Der Pfad, unter dem die Animation gespeichert werden soll.
+        pixel_size (tuple): Die Größe des Subplots in Pixeln.
+        ppi (int): Die Anzahl der Pixel pro Zoll.
     """
+    figsize = (pixel_size[0] / ppi, pixel_size[1] / ppi)  # Umrechnung von Pixeln in Zoll
+
     # Generiere ein Anfangsbild
     bild = image_generation.generiere_bild(params)
 
     # Erstelle die Animation
-    fig, ax = plt.subplots(figsize=figsize)  # Setzt die Größe des Subplots auf 6x6 Zoll
+    fig, ax = plt.subplots(figsize=figsize, dpi=ppi)  # Setzt die Größe und Auflösung des Subplots
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)  # Entfernt die Ränder
     im = ax.imshow(bild)
     ax.axis('off')  # Schaltet die Achsen aus.
@@ -47,6 +51,6 @@ def erstelle_und_speichere_animation(params, filepath, figsize=(10,10)):
     ani = animation.FuncAnimation(fig, aktualisiere_bild, fargs=(params, im), frames=params['frames'], interval=params['interval'])
 
     # Speichern Sie die Animation in einer Datei
-    ani.save(filepath, fps=30)
+    ani.save(filepath, writer='pillow', fps=30)
 
     print(f'{filepath} gespeichert')
