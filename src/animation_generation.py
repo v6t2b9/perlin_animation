@@ -27,7 +27,7 @@ def aktualisiere_bild(i, params, im):
     # Aktualisiere das Bild der Animation
     im.set_array(bild)
 
-def erstelle_und_speichere_animation(params, filepath):
+def erstelle_und_speichere_animation(params, filepath, figsize=(10,10)):
     """
     Erstellt eine Animation basierend auf den gegebenen Parametern und speichert sie in einer Datei.
 
@@ -39,7 +39,7 @@ def erstelle_und_speichere_animation(params, filepath):
     bild = image_generation.generiere_bild(params)
 
     # Erstelle die Animation
-    fig, ax = plt.subplots(figsize=(16,9))  # Setzt die Größe des Subplots auf 6x6 Zoll
+    fig, ax = plt.subplots(figsize=figsize)  # Setzt die Größe des Subplots auf 6x6 Zoll
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)  # Entfernt die Ränder
     im = ax.imshow(bild)
     ax.axis('off')  # Schaltet die Achsen aus.

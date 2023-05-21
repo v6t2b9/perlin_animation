@@ -30,17 +30,17 @@ def main():
     # Speichern Sie die Parameter in einer Datei
     file_handling.speichern_params(params, 'params/params.json')
 
+    # Laden Sie die Parameter aus der Datei
+    #params = file_handling.laden_params('params/params.json')
+
     # Generieren Sie ein Bild
     image = image_generation.generiere_bild(params)
-
+        
     # Zeige das Bild an
-    plt.figure(figsize=(16, 9))  # Optional: Ändern Sie die Größe des Bildes, hier 10x10 Zoll.
-    plt.imshow(image)
-    plt.axis('off')  # Schaltet die Achsen aus.
-    plt.show()
+    image_generation.show_image(image, (16, 16))
 
     # Erstelle und speichere die Animation
-    animation_generation.erstelle_und_speichere_animation(params, 'export/animation.gif')
+    animation_generation.erstelle_und_speichere_animation(params, 'export/animation.gif', (10,10))
 
 if __name__ == "__main__":
     main()
