@@ -269,7 +269,7 @@ def erstelle_und_speichere_animation(params, filepath):
     bild = generiere_bild(params)
 
     # Erstelle die Animation
-    fig, ax = plt.subplots(figsize=(6,6))  # Setzt die Größe des Subplots auf 6x6 Zoll
+    fig, ax = plt.subplots(figsize=(16,9))  # Setzt die Größe des Subplots auf 6x6 Zoll
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)  # Entfernt die Ränder
     im = ax.imshow(bild)
     ax.axis('off')  # Schaltet die Achsen aus.
