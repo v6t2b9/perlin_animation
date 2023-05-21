@@ -44,8 +44,8 @@ def main():
     image_generation.show_image(image, (16, 16))
 
     # Erstelle und speichere die Animation
-    animation_breite = input('Breite der Animation in Pixel: ')
-    animation_hoehe = input('Höhe der Animation in Pixel: ')
+    animation_breite = int(input('Breite der Animation in Pixel: '))
+    animation_hoehe = int(input('Höhe der Animation in Pixel: '))
     animation_dateiname = input('Mit welchem Namen soll die gif-Datei gespeichert werden?\n> ')
     
     animation_generation.erstelle_und_speichere_animation(params, f'export/{animation_dateiname}.gif', (animation_breite,animation_hoehe), 100)
