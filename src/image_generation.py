@@ -84,3 +84,39 @@ def generiere_perlin_rauschen(breite, hoehe, t, scale_x, scale_y, scale_t, octav
             rauschen[y, x] = (n + 1) / 2.0
 
     return rauschen
+
+import matplotlib.pyplot as plt
+
+def show_image(image, figsize=(10, 10)):
+    """
+    Zeigt ein Bild in einer matplotlib-Figur mit einer spezifischen Größe an.
+    Die Funktion schaltet die Achsenbeschriftung aus und zeigt das Bild sofort an.
+
+    Parameters:
+    -----------
+    image : array-like or PIL image
+        Das darzustellende Bild. Es kann in vielen Formaten vorliegen - als PIL-Bild, 
+        als NumPy-Array (typischerweise mit Form (Höhe, Breite, 3) oder (Höhe, Breite, 4)), usw.
+        Die Funktion plt.imshow, die intern genutzt wird, handhabt die Konvertierung.
+        
+    figsize : tuple of integers, optional, default: (10, 10)
+        Die Größe der erstellten Matplotlib-Figur, angegeben als (Breite, Höhe) in Zoll.
+        Wenn nicht angegeben, wird der Standardwert (10, 10) verwendet.
+
+    Returns:
+    --------
+    None
+        Diese Funktion gibt nichts zurück. Sie erzeugt eine Matplotlib-Figur und zeigt diese an.
+    """
+
+    # Erstellen einer neuen Figur mit der gegebenen Größe
+    plt.figure(figsize=figsize)
+
+    # Anzeigen des Bildes innerhalb der Figur
+    plt.imshow(image)
+
+    # Deaktivieren der Achsenbeschriftung
+    plt.axis('off')
+
+    # Anzeigen der erstellten Figur
+    plt.show()
