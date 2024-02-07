@@ -22,21 +22,54 @@ Dieses Projekt verwendet Perlin-Rauschen, um einzigartige, organisch anmutende A
 - `params/params.json`: Eine JSON-Datei, in der die Parameter für die Animation gespeichert sind. Hier können Anpassungen vorgenommen werden, um die generierte Animation zu beeinflussen.
 - `export/`: Das Verzeichnis, in dem die erzeugte GIF-Animation gespeichert wird.
 
-## Perlin Noise Parameter
+## Parameter
 
-    breite (int): Die Breite des Rauschens.
-    hoehe (int): Die Höhe des Rauschens.
-    t (float): Der Zeitpunkt, für den das Rauschen generiert wird.
-    scale_x (float): Der Skalierungsfaktor in x-Richtung.
-    scale_y (float): Der Skalierungsfaktor in y-Richtung.
-    scale_t (float): Der Skalierungsfaktor in der Zeitdimension.
-    octaves (int): Die Anzahl der Oktaven für das Perlin-Rauschen.
-    persistence (float): Die Persistenz für das Perlin-Rauschen.
-    lacunarity (float): Die Lacunarität für das Perlin-Rauschen.
-    repeatx (int): Die Wiederholungsperiode des Rauschens in x-Richtung.
-    repeaty (int): Die Wiederholungsperiode des Rauschens in y-Richtung.
-    repeatz (int): Die Wiederholungsperiode des Rauschens in der Zeitdimension.
-    base (int): Ein Startwert für den Zufallsgenerator.
+- **breite**: Die Breite des generierten Rauschens in Pixeln. Muss größer oder gleich 1 sein. Bestimmt die horizontale Größe des Ausgabebildes.
+
+- **hoehe**: Die Höhe des generierten Rauschens in Pixeln. Muss größer oder gleich 1 sein. Bestimmt die vertikale Größe des Ausgabebildes.
+
+- **t**: Der Zeitpunkt, für den das Rauschen generiert wird. Dies ermöglicht die Erzeugung von animiertem Rauschen, indem für jeden Frame ein anderer Wert verwendet wird.
+
+- **scale_x**: Der Skalierungsfaktor in x-Richtung. Ein höherer Wert bewirkt eine "zoom-in"-Effekt, während ein niedrigerer Wert eine feinere, detailliertere Textur erzeugt.
+
+- **scale_y**: Der Skalierungsfaktor in y-Richtung. Funktioniert ähnlich wie `scale_x`, aber für die vertikale Dimension.
+
+- **scale_t**: Der Skalierungsfaktor in der Zeitdimension. Beeinflusst die Geschwindigkeit der Änderungen zwischen den Frames bei animiertem Rauschen.
+
+- **octaves**: Die Anzahl der Oktaven für das Perlin-Rauschen. Mehr Oktaven führen zu einer komplexeren und detaillierteren Textur.
+
+- **persistence**: Die Persistenz für das Perlin-Rauschen. Ein niedrigerer Wert führt zu einem schnellen Abfall der Amplitude mit jeder Oktave, was eine glattere Textur erzeugt.
+
+- **lacunarity**: Die Lacunarität für das Perlin-Rauschen. Bestimmt den Abstand zwischen den einzelnen Oktaven. Ein höherer Wert führt zu einer "raueren" Textur.
+
+- **repeatx**: Die Wiederholungsperiode des Rauschens in x-Richtung. Ermöglicht die Erzeugung eines nahtlosen Musters durch Wiederholung des Rauschens.
+
+- **repeaty**: Die Wiederholungsperiode des Rauschens in y-Richtung. Funktioniert wie `repeatx`, aber für die vertikale Dimension.
+
+- **repeatz**: Die Wiederholungsperiode des Rauschens in der Zeitdimension. Ermöglicht die Wiederholung des animierten Rauschens, sodass es endlos abgespielt werden kann.
+
+- **base**: Ein Startwert für den Zufallsgenerator. Durch Verwendung des gleichen Wertes kann das gleiche Rauschen reproduziert werden.
+
+- **rot_scale**: Der Skalierungsfaktor für die rote Farbkomponente. Bestimmt die Intensität der roten Farbe im Rauschen.
+
+- **gruen_scale**: Der Skalierungsfaktor für die grüne Farbkomponente. Bestimmt die Intensität der grünen Farbe im Rauschen.
+
+- **blau_scale**: Der Skalierungsfaktor für die blaue Farbkomponente. Bestimmt die Intensität der blauen Farbe im Rauschen.
+
+- **rot_invertiert**: Gibt an, ob die rote Farbkomponente invertiert werden soll. Dies kehrt die Intensität der roten Farbe um.
+
+- **gruen_invertiert**: Gibt an, ob die grüne Farbkomponente invertiert werden soll. Dies kehrt die Intensität der grünen Farbe um.
+
+- **blau_invertiert**: Gibt an, ob die blaue Farbkomponente invertiert werden soll. Dies kehrt die Intensität der blauen Farbe um.
+
+- **frames**: Die Anzahl der Frames für die Animation. Bestimmt die Gesamtlänge der Animation, wenn `t` verwendet wird.
+
+- **interval**: Das Intervall zwischen den Frames in Millisekunden. Bestimmt die Geschwindigkeit der Animation.
+
+## Verwendung
+
+Passen Sie die Parameter an Ihre Bedürfnisse an, um das gewünschte Rauschen zu erzeugen. Diese können für visuelle Effekte, Terrain-Generierung in Spielen oder als Grundlage für weitere grafische Anwendungen dienen.
+
 
 ## Lizenz
 
