@@ -51,6 +51,11 @@ def erstelle_und_speichere_animation(params, filepath, pixel_size=(1000,1000), p
     ani = animation.FuncAnimation(fig, aktualisiere_bild, fargs=(params, im), frames=params['frames'], interval=params['interval'])
 
     # Speichern Sie die Animation in einer Datei
-    ani.save(filepath, writer='pillow', fps=30)
-
+    # ani.save(filepath, writer='pillow', fps=30)
+	
+	# Speichern Sie die Animation in einer Datei
+    ani.save(filepath, writer='ffmpeg', fps=30)
+     
     print(f'{filepath} gespeichert')
+
+    return ani
